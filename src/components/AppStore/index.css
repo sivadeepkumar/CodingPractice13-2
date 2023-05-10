@@ -1,0 +1,38 @@
+.main-con {
+  margin: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+.ul-element {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.sub-con {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.inp-img-container {
+  border: 1px solid red;
+  height: 21px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.inp {
+  cursor: pointer;
+  border: 0;
+  height: 19px;
+  outline: none;
+}
+.img {
+  height: 20px;
+}
