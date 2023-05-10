@@ -1,3 +1,7 @@
-li {
+.highlight {
+  text-decoration: underline;
+  background-color: goldenrod;
+}
+.liEle {
   margin-right: 10px;
 }

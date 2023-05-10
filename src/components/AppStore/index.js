@@ -296,32 +296,43 @@ const appsList = [
 ]
 
 class AppStore extends Component {
-  state = {activeId: tabsList[0].tabId}
+  state = {activeId: tabsList[0].tabId, inputSearch: ''}
 
-  onClicked = value => {
-    this.setState({activeId: value})
+  onClicked = id => {
+    this.setState({activeId: id})
   }
 
-  onlyFitered = () => {
+  onlyFiltered = () => {
     const {activeId} = this.state
     return appsList.filter(each => each.category === activeId)
   }
 
+  onInputSearch = event => {
+    this.setState({inputSearch: event.target.value})
+  }
+
   render() {
-    const {activeId} = this.state
-    console.log(activeId)
-    const filAppsList = this.onlyFitered()
+    const {activeId, inputSearch} = this.state
+    const filAppsList = this.onlyFiltered()
+    const searchResult = filAppsList.filter(each =>
+      each.appName.toLowerCase().includes(inputSearch.toLowerCase()),
+    )
 
     return (
       <div className="main-con">
         <div className="sub-con">
           <h1>App Store</h1>
           <div className="inp-img-container">
-            <input type="search" className="inp" />
+            <input
+              value={inputSearch}
+              onChange={this.onInputSearch}
+              type="search"
+              className="inp"
+            />
             <img
               src="https://assets.ccbp.in/frontend/react-js/app-store/app-store-search-img.png"
               className="img"
-              alt="search-icon"
+              alt="search icon"
             />
           </div>
           <ul>
@@ -330,12 +341,13 @@ class AppStore extends Component {
                 key={each.tabId}
                 eachItem={each}
                 onClicked={this.onClicked}
+                isActive={activeId === each.tabId}
               />
             ))}
           </ul>
           <ul className="ul-element">
-            {filAppsList.map(each => (
-              <AppItem key={each.category} eachItem={each} />
+            {searchResult.map(each => (
+              <AppItem key={each.id} eachItem={each} />
             ))}
           </ul>
         </div>
